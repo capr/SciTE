@@ -19,10 +19,10 @@ local function splitstr(str)
     return result
 end
 
-local function bangra_symbols()
+local function scopes_symbols()
     return {
     -- keywords and macros
-    KEYWORDS = splitstr(getprop("keywords.bangra_lang") or
+    KEYWORDS = splitstr(getprop("keywords.scopes_lang") or
     "let true false fn xfn quote with ::* ::@ call escape do dump-syntax"
         .. " syntax-extend if else elseif loop continue none assert qquote-syntax"
         .. " unquote unquote-splice globals return splice"
@@ -32,7 +32,7 @@ local function bangra_symbols()
         ),
 
     -- builtin and global functions
-    FUNCTIONS = splitstr(getprop("functions.bangra_lang") or
+    FUNCTIONS = splitstr(getprop("functions.scopes_lang") or
     "external branch print repr tupleof import-c eval structof typeof"
         .. " macro block-macro block-scope-macro cons expand empty? type?"
         .. " dump syntax-head? countof slice none? list-atom? label?"
@@ -49,19 +49,19 @@ local function bangra_symbols()
         ),
 
     -- builtin and global functions with side effects
-    SFXFUNCTIONS = splitstr(getprop("sfxfunctions.bangra_lang") or
+    SFXFUNCTIONS = splitstr(getprop("sfxfunctions.scopes_lang") or
     "set-scope-symbol! set-type-symbol! set-globals! set-exception-handler!"
         .. " copy-memory! ref-set!"
         ),
 
     -- builtin operator functions that can also be used as infix
-    OPERATORS = splitstr(getprop("operators.bangra_lang") or
+    OPERATORS = splitstr(getprop("operators.scopes_lang") or
     "+ - ++ -- * / % == != > >= < <= not and or = @ ** ^ & | ~ , . .. : += -="
         .. " *= /= %= ^= &= |= ~= <- ? := // << >> <> <:"
         ),
 
 
-    TYPES = splitstr(getprop("types.bangra_lang") or
+    TYPES = splitstr(getprop("types.scopes_lang") or
         "int i8 i16 i32 i64 u8 u16 u32 u64 Nothing string ref"
         .. " r16 r32 r64 half float double Symbol list Parameter"
         .. " Label Integer Real array tuple vector"
@@ -382,7 +382,7 @@ end
 
 function OnStyle(styler)
     local header = getHeader()
-    local symbols = (dsl_table[header] or bangra_symbols)()
+    local symbols = (dsl_table[header] or scopes_symbols)()
 
     S_DEFAULT = 32
     S_WHITESPACE = 0

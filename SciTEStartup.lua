@@ -1,1 +1,1 @@
-require'script_bangra'
+require'script_scopes'
