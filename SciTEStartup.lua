@@ -83,10 +83,16 @@ local function check_micro_mode(f)
 	end
 end
 
-function OnOpen(f)
+local function buffer_switch(f)
 	if not string.find(f, '[\\/]$') then
-		check_micro_mode()
+		check_micro_mode(f)
 	end
+end
+function OnOpen(f)
+	buffer_switch(f)
+end
+function OnSwitchFile(f)
+	buffer_switch(f)
 end
 function OnSave()
 	check_micro_mode()
