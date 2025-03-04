@@ -97,3 +97,22 @@ end
 function OnSave()
 	check_micro_mode()
 end
+
+function getWordAtCursor()
+	local pos = editor.CurrentPos
+	local start_pos = editor:WordStartPosition(pos, true)
+	local end_pos = editor:WordEndPosition(pos, true)
+	local word = editor:textrange(start_pos, end_pos)
+	return word
+end
+
+function setFindText()
+	--local word = getWordAtCursor() or ''
+	--props['find.what'] = word
+	--scite.SendEditor(SCI_SEARCHANCHOR)
+	--scite.SendEditor(SCI_SETTARGETSTART, 0)
+	--scite.SendEditor(SCI_SETTARGETEND, editor.Length)
+	--scite.SendEditor(SCI_SEARCHINTARGET, word:len(), word)
+	--scite.MenuCommand(IDM_FIND)
+	--scite.MenuCommand(IDM_FINDNEXT)
+end
